@@ -1,0 +1,52 @@
+// LeetCode 54
+// Spiral Matrix
+// Topic: Matrix
+// Difficulty: Medium
+// Time Complexity: O(m*n)
+// Space Complexity: O(1) // excluding output list
+
+import java.util.*;
+
+class Solution {
+    public List<Integer> spiralOrder(int[][]matrix){
+        List<Integer>list=new ArrayList<>();
+
+        int m=matrix.length;
+        int n=matrix[0].length;
+
+        int minr=0,maxr=m-1;
+        int minc=0,maxc=n-1;
+
+        while(minr<=maxr && minc<=maxc){
+
+            // left -> right
+            for(int j=minc;j<=maxc;j++){
+                list.add(matrix[minr][j]);
+            }
+            minr++;
+
+            // top -> bottom
+            if(minr>maxr || minc>maxc)break;
+            for(int i=minr;i<=maxr;i++){
+                list.add(matrix[i][maxc]);
+            }
+            maxc--;
+
+            // right -> left
+            if(minr>maxr || minc>maxc)break;
+            for(int j=maxc;j>=minc;j--){
+                list.add(matrix[maxr][j]);
+            }
+            maxr--;
+
+            // bottom -> top
+            if(minr>maxr || minc>maxc)break;
+            for(int i=maxr;i>=minr;i--){
+                list.add(matrix[i][minc]);
+            }
+            minc++;
+        }
+
+        return list;
+    }
+}
