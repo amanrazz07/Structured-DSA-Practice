@@ -1,0 +1,42 @@
+// LeetCode 73
+// Set Matrix Zeroes
+// Topic: Matrix
+// Difficulty: Medium
+// Time Complexity: O(m*n*(m+n))
+// Space Complexity: O(m*n)
+
+class Solution {
+    public void setZeroes(int[][]matrix){
+        int m=matrix.length;
+        int n=matrix[0].length;
+
+        boolean[][]vis=new boolean[m][n];
+
+        // mark rows and columns
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+
+                if(matrix[i][j]==0){
+
+                    for(int k=0;k<n;k++){
+                        vis[i][k]=true;
+                    }
+
+                    for(int k=0;k<m;k++){
+                        vis[k][j]=true;
+                    }
+                }
+            }
+        }
+
+        // fill zeros
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+
+                if(vis[i][j]){
+                    matrix[i][j]=0;
+                }
+            }
+        }
+    }
+}
