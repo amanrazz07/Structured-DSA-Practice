@@ -1,0 +1,15 @@
+// LeetCode 1137
+// N-th Tribonacci Number (Recursion)
+// Topic: Recursion
+// Difficulty: Easy
+// Time Complexity: O(3^n)
+// Space Complexity: O(n)
+
+class Solution {
+    public int tribonacci(int n){
+        if(n<=1)return n;
+        if(n==2)return 1;
+
+        return tribonacci(n-1)+tribonacci(n-2)+ tribonacci(n-3);
+    }
+}
