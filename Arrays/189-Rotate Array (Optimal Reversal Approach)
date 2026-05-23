@@ -1,0 +1,35 @@
+// LeetCode 189
+// Rotate Array (Optimal Reversal Approach)
+// Topic: Arrays, Two Pointers
+// Difficulty: Medium
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+
+class Solution {
+    public void rotate(int[]nums,int k){
+        int n=nums.length;
+
+        // handle large k
+        k=k%n;
+
+        // reverse first part
+        reverse(nums,0,n-k-1);
+
+        // reverse second part
+        reverse(nums,n-k,n-1);
+
+        // reverse whole array
+        reverse(nums,0,n-1);
+    }
+
+    public static void reverse(int[]nums,int i,int j){
+        while(i<j){
+            int temp=nums[i];
+            nums[i]=nums[j];
+            nums[j]=temp;
+
+            i++;
+            j--;
+        }
+    }
+}
