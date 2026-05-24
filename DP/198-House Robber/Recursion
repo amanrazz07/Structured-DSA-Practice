@@ -1,1 +1,23 @@
+// LeetCode 198
+// House Robber (Recursion)
+// Topic: Dynamic Programming, Recursion
+// Difficulty: Medium
+// Time Complexity: O(2^n)
+// Space Complexity: O(n)
 
+class Solution {
+    public int rob(int[]nums){
+        return solve(0,nums);
+    }
+
+    public static int solve(int i,int[]nums){
+        if(i>=nums.length){
+            return 0;
+        }
+
+        int take=nums[i]+solve(i+2,nums);
+        int skip=solve(i+1,nums);
+
+        return Math.max(take,skip);
+    }
+}         //currect code but will give tle 
