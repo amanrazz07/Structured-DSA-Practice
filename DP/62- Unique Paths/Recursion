@@ -1,0 +1,30 @@
+// LeetCode 62
+// Unique Paths (Recursion)
+// Topic: Dynamic Programming, Recursion
+// Difficulty: Medium
+// Time Complexity: O(2^(m+n))
+// Space Complexity: O(m+n)
+
+class Solution {
+    public int uniquePaths(int m,int n){
+        return solve(0,0,m,n);
+    }
+
+    public static int solve(int i,int j,int m,int n){
+
+        // out of bounds
+        if(i==m || j==n){
+            return 0;
+        }
+
+        // destination reached
+        if(i==m-1 && j==n-1){
+            return 1;
+        }
+
+        int rightWays=solve(i,j+1,m,n);
+        int downWays=solve(i+1,j,m,n);
+
+        return rightWays+downWays;
+    }
+}
