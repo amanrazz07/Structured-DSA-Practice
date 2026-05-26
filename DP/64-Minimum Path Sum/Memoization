@@ -1,0 +1,56 @@
+// LeetCode 64
+// Minimum Path Sum
+// Topic: Dynamic Programming
+// Difficulty: Medium
+// Time Complexity: O(m*n)
+// Space Complexity: O(m*n)
+
+import java.util.*;
+
+class Solution {
+    public int minPathSum(int[][]grid){
+        int m=grid.length;
+        int n=grid[0].length;
+
+        int[][]dp=new int[m][n];
+
+        for(int[]rows:dp){
+            Arrays.fill(rows,-1);
+        }
+
+        return solve(0,0,m,n,grid,dp);
+    }
+
+    public static int solve(int i,int j,int m,int n,int[][]grid,int[][]dp){
+
+        // destination reached
+        if(i==m-1 && j==n-1){
+            return dp[i][j]=grid[i][j];
+        }
+
+        // last row → only move right
+        else if(i==m-1){
+            return dp[i][j]=grid[i][j]+
+                            solve(i,j+1,m,n,grid,dp);
+        }
+
+        // last column → only move down
+        else if(j==n-1){
+            return dp[i][j]=grid[i][j]+
+                            solve(i+1,j,m,n,grid,dp);
+        }
+
+        // already computed
+        if(dp[i][j]!=-1){
+            return dp[i][j];
+        }
+
+        int rightWays=grid[i][j]+
+                      solve(i,j+1,m,n,grid,dp);
+
+        int downWays=grid[i][j]+
+                     solve(i+1,j,m,n,grid,dp);
+
+        return dp[i][j]=Math.min(rightWays,downWays);
+    }
+}
