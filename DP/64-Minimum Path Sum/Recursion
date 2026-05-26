@@ -1,0 +1,43 @@
+// LeetCode 64
+// Minimum Path Sum 
+// Topic: Dynamic Programming, Recursion
+// Difficulty: Medium
+// Time Complexity: O(2^(m+n))
+// Space Complexity: O(m+n)
+
+class Solution {
+    public int minPathSum(int[][]grid){
+        int m=grid.length;
+        int n=grid[0].length;
+
+        return solve(0,0,m,n,grid);
+    }
+
+    public static int solve(int i,int j,int m,int n,int[][]grid){
+
+        // destination reached
+        if(i==m-1 && j==n-1){
+            return grid[i][j];
+        }
+
+        // last row → only move right
+        else if(i==m-1 && j!=n-1){
+            return grid[i][j]+
+                   solve(i,j+1,m,n,grid);
+        }
+
+        // last column → only move down
+        else if(j==n-1 && i!=m-1){
+            return grid[i][j]+
+                   solve(i+1,j,m,n,grid);
+        }
+
+        int rightWays=grid[i][j]+
+                      solve(i,j+1,m,n,grid);
+
+        int downWays=grid[i][j]+
+                     solve(i+1,j,m,n,grid);
+
+        return Math.min(rightWays,downWays);
+    }
+}
