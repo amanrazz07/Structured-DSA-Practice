@@ -1,0 +1,25 @@
+// LeetCode 3300
+// Minimum Element After Replacement With Digit Sum
+// Topic: Arrays, Math
+// Difficulty: Easy
+// Time Complexity: O(n*d) // d = number of digits
+// Space Complexity: O(1)
+
+class Solution {
+    public int minElement(int[]nums){
+        int ans=Integer.MAX_VALUE;
+
+        for(int num:nums){
+            int sum=0;
+
+            while(num>0){
+                sum+=num%10;
+                num/=10;
+            }
+
+            ans=Math.min(ans,sum);
+        }
+
+        return ans;
+    }
+}
