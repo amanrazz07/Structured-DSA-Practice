@@ -1,1 +1,37 @@
+// LeetCode 1277
+// Count Square Submatrices with All Ones (Pure Recursion)
+// Topic: Dynamic Programming, Recursion
+// Difficulty: Medium
+// Time Complexity: O(3^(m*n)) ❌
+// Space Complexity: O(m+n)
 
+class Solution {
+    public int countSquares(int[][]matrix){
+        int ans=0;
+
+        for(int i=0;i<matrix.length;i++){
+            for(int j=0;j<matrix[0].length;j++){
+                ans+=solve(i,j,matrix);
+            }
+        }
+
+        return ans;
+    }
+
+    public int solve(int i,int j,int[][]mat){
+        if(i>=mat.length || j>=mat[0].length){
+            return 0;
+        }
+
+        int right=solve(i,j+1,mat);
+        int down=solve(i+1,j,mat);
+        int diag=solve(i+1,j+1,mat);
+
+        if(mat[i][j]==1){
+            return 1+Math.min(right,
+                     Math.min(down,diag));
+        }
+
+        return 0;
+    }
+}
