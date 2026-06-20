@@ -1,0 +1,22 @@
+// Check Good Integer
+// Topic: Math
+// Time Complexity: O(d) // d = number of digits
+// Space Complexity: O(1)
+
+class Solution {
+    public boolean checkGoodInteger(int n){
+        int sum=0;
+        int square=0;
+
+        while(n>0){
+            int r=n%10;
+
+            sum+=r;
+            square+=r*r;
+
+            n/=10;
+        }
+
+        return square-sum>=50;
+    }
+}
