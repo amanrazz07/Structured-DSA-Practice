@@ -1,0 +1,33 @@
+// Count Special Integers
+// Topic: Arrays, HashMap, HashSet, Brute Force
+// Difficulty: Easy
+// Time Complexity: O(n^3)
+// Space Complexity: O(n)
+
+import java.util.*;
+
+class Solution {
+    public int countSpecialIntegers(int[]nums){
+        HashMap<Integer,Integer>map=new HashMap<>();
+        HashSet<Integer>set=new HashSet<>();
+
+        for(int x:nums){
+            map.put(x,map.getOrDefault(x,0)+1);
+        }
+
+        for(int i=0;i<nums.length;i++){
+            for(int j=i+1;j<nums.length;j++){
+                for(int k=j+1;k<nums.length;k++){
+
+                    if(nums[i]==nums[j]&&nums[j]==nums[k]){
+                        if(map.get(nums[i])==3&&j-i==k-j){
+                            set.add(nums[i]);
+                        }
+                    }
+                }
+            }
+        }
+
+        return set.size();
+    }
+}
